@@ -1,5 +1,28 @@
-{% extend 'base.html' %}
+{% extends 'base.html' %}
+
+{% block title %}
+    <h1>это титульник {{ title }}</h1>
+{% endblock %}
 
 {% block content %}
     <p>Это Контент из index.html</p>
+    <a href="{% url 'catalog:product_list' %}">
+        Страница со списком товаров
+    </a>
+    <!--
+        {{ var_dict.key }} — обращение к ключу вложенного словаря
+        {{ var_instance.attribute }} — обращение к атрибуту или методу класса
+        {{ var_list.0 }} — обращение к элементу списка 
+    -->
+    <p>
+    {% if promo_product == "Iron carrot" %}
+        Железная морковка — хорошо для стальных зубов.
+    {% elif promo_product == "Giant mousetrap" %}
+        Ребята, давайте жить дружно!
+    {% else %}
+        Вы все меня ещё не знаете, но вы меня узнаете!
+    {% endif %}
+    </p>
+    <p>Товар дня: {{ promo_product }}</p>
+    {% lorem 1 p %}
 {% endblock %}

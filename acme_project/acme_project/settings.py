@@ -52,11 +52,19 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'acme_project.urls'
+# Адреса папок с шаблонами можно вынести в отдельные константы,
+# код станет более читабельным.
+TEMPLATES_DIR = BASE_DIR / 'templates'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # Указываем, в каких директориях искать HTML-шаблоны.
+        'DIRS': [TEMPLATES_DIR],
+        # Оставляем True: шаблоны приложений будут искаться 
+        # не только на уровне проекта, но и в директориях приложений.
+        # Это необходимо для работы 
+        # встроенных приложений (например админки).
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
